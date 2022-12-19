@@ -1,0 +1,85 @@
+@import '~@flowforge/forge-ui-components/dist/scss/forge-colors.scss';
+
+@import "./layouts.scss";
+
+#ff-app {
+    background-color: $ff-grey-300;
+}
+
+.ff-link {
+    color: $ff-blue-700;
+    &:hover {
+        cursor: pointer;
+        color: $ff-blue-900;
+    }
+}
+
+.ff-avatar {
+    width: 24px;
+    height: 24px;
+    border-radius: 4px;
+}
+.ff-avatar-large {
+    width: 48px;
+    height: 48px;
+    border-radius: 8px;
+}
+.ff-bg-dark {
+    background-color: $ff-grey-800;
+    .ff-btn.ff-btn--primary {
+        background-color: $ff-teal-600;
+        &:hover {
+            background-color: $ff-teal-700;
+        }
+    }
+}
+
+.ff-loading {
+    width: 100%;
+    height: 100%;
+    h4 {
+        font-size: 1.5rem;
+        margin-top: 1rem;
+        font-weight: 600;
+    }
+    &.theme-light {
+        color: $ff-grey-900;
+    }
+    &.theme-dark {
+        color: white;
+    }
+}
+
+.ff-dialog-box a {
+    color: $ff-blue-600;
+    &:hover {
+        color: $ff-blue-800;
+    }
+}
+
+.ff-no-data {
+    background-color: $ff-grey-100;
+    color: $ff-grey-400;
+    font-size: 0.875rem;
+    border: $ff-grey-200 solid 1px;
+    padding: 12px;
+    text-align: center;
+}
+
+label {
+    cursor: inherit;
+}
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: $ff-grey-400 !important;
+    opacity: 1; /* Firefox */
+}
+
+/* Ensure headlessui MenuItem pointer for active `menuitem` anchors */
+[role="menu"] a[role="menuitem"] {
+    cursor: pointer
+}
+
+.ff-dialog-fixed-height .ff-dialog-content {
+    overflow-y: visible;
+}

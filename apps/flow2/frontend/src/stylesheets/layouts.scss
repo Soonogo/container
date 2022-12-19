@@ -1,0 +1,633 @@
+@import '~@flowforge/forge-ui-components/dist/scss/forge-colors.scss';
+@import '~@flowforge/forge-ui-components/dist/scss/forge-variables.scss';
+
+$sidenav_width: 275px;
+$transition_time: .3s;
+
+/*
+    Layout - Box
+        used in login/setup/signup screens
+*/
+
+$nav_height: 60px;
+
+.ff-layout--box {
+    background-color: $ff-grey-800;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: inherit;
+    background-image: url("@/images/ff-flow-bg-white.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position-y: 90%;
+    .ff-error-inline {
+        color: $ff-red-300;
+    }
+}
+
+.ff-layout--box--wrapper {
+    width: calc(100% - 48px);
+    border-top: 2px solid $ff-red-400;
+    max-width: 1024px;
+    height: 60%;
+    padding: 64px 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba($ff-grey-600, 0.2);
+    .ff-logo {
+        max-width: 200px;
+        margin: auto;
+        margin-bottom: 48px;
+    }
+}
+
+.ff-layout--box--content {
+    background-color: $ff-grey-700;
+    width: 100%;
+    min-height: 400px;
+    padding: 64px 24px;
+    border-radius: 32px;
+    color: white;
+    h2 {
+        margin-top: -12px;
+        margin-bottom: 24px;
+    }
+    h5 {
+        font-weight: bold;
+        margin-bottom: 0.75rem;
+    }
+    label {
+        display: block;
+        color: white;
+        text-transform: uppercase;
+        font-weight: 600;
+        margin-bottom: 4px;
+        font-size: 0.75rem;
+    }
+    p {
+        margin-bottom: 1rem;
+    }
+    a {
+        color: $ff-teal-400;
+    }
+    .ff-input:not(.ff-input--error) {
+        border-color: transparent;
+    }
+    .ff-input {
+        background-color: $ff-grey-600;
+        border-width: 2px;
+        input {
+            color: $ff-grey-50;
+        }
+        &:focus-within {
+            border-color: $ff-teal-400;
+        }
+    }
+    .ff-error-inline {
+        margin-bottom: 12px;
+    }
+
+    .ff-actions {
+        margin-top: 18px;
+    }
+    .ff-btn {
+        text-transform: uppercase;
+        width: 100%;
+        margin-bottom: 6px;
+    }
+    .ff-btn.ff-btn--primary {
+        background-color: $ff-teal-600;
+        color: white;
+        &:hover {
+            background-color: $ff-teal-700;
+        }
+        &:disabled {
+            background-color: $ff-grey-300;
+            color: $ff-grey-400;
+        }
+    }
+    .ff-btn.ff-btn--tertiary {
+        color: $ff-teal-500;
+        font-weight: normal;
+        &:hover {
+            background-color: transparent;
+            color: white;
+        }
+    }
+}
+
+/*
+    Layout - Platform
+        used in all other pages
+*/
+
+.ff-layout--platform {
+    min-height: inherit;
+    display: flex;
+    flex-direction: column;
+}
+
+.ff-layout--platform--wrapper {
+    display: grid;
+    flex-grow: 1;
+    padding-top: $nav_height;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    .ff-view {
+        position: relative;
+        overflow-y: auto;
+    }
+    main {
+        margin: 9px;
+        padding: 12px;
+        background-color: $ff-grey-50;
+    }
+}
+
+.ff-notifications {
+    position: absolute; 
+    right: 12px;
+    top: $nav_height + 12px;
+    z-index: 10;
+    min-width: 350px;
+}
+
+.ff-notification-toast {
+    min-height: $nav_height;
+    margin-bottom: $ff-unit-md;
+}
+
+.notifications-list-move,
+.notifications-list-enter-active,
+.notifications-list-leave-active {
+    transition: all 0.3s ease;
+}
+
+.notifications-list-enter-from,
+.notifications-list-leave-to {
+    opacity: 0;
+    transform: translateX(200px);
+}
+
+.notifications-list-leave-active {
+    position: absolute;
+}
+
+.ff-team-selection {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    background-color: $ff-grey-800;
+    min-width: $sidenav_width;
+    svg {
+        &:hover {
+            fill: $ff-teal-300;
+            cursor: pointer;
+        }
+        &.active {
+            fill: $ff-teal-300;
+        }
+    }
+    .ff-dropdown-options {
+        position: absolute;
+        min-width: $sidenav_width;
+        display: none;
+        z-index: 10;
+        border-bottom: 0;
+        max-height: initial;
+        &.active {
+            display: block;
+        }
+        .ff-dropdown-option {
+            padding: 0;
+            border-bottom: none;
+        }
+    }
+}
+.ff-team-selection-name {
+    margin-left: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    label {
+        font-size: 0.7rem;
+        line-height: 0.7rem;
+        color: $ff-grey-300;
+        margin-left: 0;
+    }
+    h5 {
+        color: white;
+        white-space: nowrap;
+    }
+}
+.ff-team-selection > div {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    &:hover {
+        label, h5 {
+            color: $ff-teal-200;
+        }
+    }
+}
+.ff-banner {
+    background-color: $ff-grey-800;
+    color: $ff-grey-300;
+    padding: 8px;
+    text-align: center;
+    border-bottom: 2px solid $ff-red-500;
+
+    &.ff-banner-warning {
+        background-color: $ff-red-700;
+        color: $ff-grey-50;
+        text-align: left;
+        border-bottom: 2px solid $ff-red-800;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+}
+.ff-header {
+    z-index: 10;
+    background-color: $ff-grey-800;
+    height: $nav_height;
+    border-bottom: 2px solid $ff-red-500;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: fixed;
+    width: 100%;
+    img.ff-logo {
+        padding: 20px;
+        height: $nav_height;
+        &:hover {
+            cursor: pointer;
+        }
+    }
+    .ff-header--mobile-toggle {
+        padding: 16px;
+        svg {
+            fill: white;
+        }
+        &.active {
+            cursor: pointer;
+            background-color: $ff-grey-700;
+        }
+    }
+    .ff-header--mobile-usertoggle {
+        padding: 16px;
+        img {
+            padding: 0;
+        }
+        &.active {
+            cursor: pointer;
+            background-color: $ff-grey-700;
+        }
+    }
+    .ff-navigation {
+        position: absolute;
+        top: 100%;
+        margin-top: 2px;
+        // display: none;
+        img {
+            padding: 0;
+            margin-right: 9px;
+        }
+        .ff-user {
+            display: flex;
+            align-items: center;
+            margin-left: -2px;
+            position: relative;
+            .ff-notification-pill {
+                font-size: 0.65rem;
+                padding: 0px 6px;
+                background-color: $ff-red-600;
+                border: 1px solid $ff-grey-800;
+                position: absolute;
+                bottom: -9px;
+                line-height: 0.85rem;
+                right: 0;
+            }
+        }        
+    }
+    .ff-navigation-right {
+        height: 100%;
+    }
+    .ff-dropdown {
+        display: none;
+        height: calc(#{$nav_height} - 2px);
+        color: white;
+        min-width: $sidenav_width;
+        position: relative;
+        top: 0;
+        margin-top: 0;
+        .ff-dropdown-selected {
+            height: 100%;
+            padding: 16px 16px 16px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-width: 0 0 0 1px;
+            border-color: $ff-grey-500;
+            border-radius: 0;
+            background-color: $ff-grey-800;
+            &:hover {
+                background-color: $ff-grey-700;
+            }
+        }
+        &.ff-dropdown--open .ff-dropdown-selected {
+            background-color: $ff-grey-700;
+        }
+        .ff-dropdown-options {
+            width: 100%;
+            margin-top: 2px;
+            border-color: $ff-grey-500;
+            border-right: 0;
+        }
+    }
+    .ff-team-selection {
+        ul {
+            top: 100%;
+            left: 0;
+        }
+        .ff-dropdown-option {
+            padding: 0;
+            .ff-nav-item {
+                background-color: $ff-grey-700;
+            }
+            &:last-child {
+                border-top: inherit;
+                .ff-nav-item {
+                    background-color: $ff-grey-800;
+                }
+            }
+        }
+    }
+    .ff-user-options {
+        width: auto;
+        min-width: $nav_height;
+        .ff-dropdown-options {
+            width: $sidenav_width;
+        }
+    }
+}
+
+.ff-user-options {
+    .ff-dropdown-options {
+        max-height: initial;
+        .ff-dropdown-option {
+            border-bottom: none;
+        }
+    } 
+    .ff-dropdown-option:last-child {
+        border-top: 2px solid $ff-red-600;
+    }
+}
+
+
+.ff-navigation,
+.ff-team-selection ul {
+    .ff-nav-item {
+        &:hover {
+            cursor: pointer;
+            svg {
+                fill: $ff-teal-100;
+            }
+            label {
+                color: $ff-teal-100;
+            }
+        }
+    }
+}
+
+.ff-navigation .ff-nav-item {
+    border-bottom: 1px solid $ff-grey-600;
+    padding: 16px 16px 16px 24px;
+    display: grid;
+    grid-template-columns: 20px 1fr;
+    svg {
+        fill: $ff-white;
+        width: 20px;
+    }
+    label {
+        margin-left: 12px;
+        color: $ff-white;
+        white-space: nowrap;
+        pointer-events: none;
+    }
+}
+
+.ff-team-selection ul .ff-nav-item {
+    border-bottom: 1px solid $ff-grey-600;
+    padding: 16px 16px 16px 22px;
+    display: grid;
+    align-items: center;
+    grid-template-columns: 24px 1fr;
+    height: $nav_height;
+    svg {
+        fill: $ff-white;
+        width: 20px;
+    }
+    label {
+        margin-left: 12px;
+        color: $ff-white;
+        white-space: nowrap;
+        pointer-events: none;
+    }
+}
+
+.ff-navigation {
+    background-color: $ff-grey-700;
+    position: fixed;
+    left: -$sidenav_width;
+    height: 100%;
+    z-index: 10;
+    transition: 0.3s left, 0.3s right;
+    -webkit-transition: 0.3s left, 0.3s right;
+    width: $sidenav_width;
+    // left side menu for team/project/device options
+    .ff-side-navigation {
+        display: flex;
+        height: 100%;
+        .ff-team-selection {
+            height: 54px;
+        }
+        .ff-team-selection, .ff-nav-item {
+            transition: $transition_time padding, $transition_time background-color;
+            -webkit-transition: $transition_time padding, $transition_time background-color;
+        }
+        // showing a nested menu
+        &.minimised {
+            .ff-team-selection {
+                padding: 16px 14px;
+                svg, .ff-team-selection-name {
+                    display: none;
+                }
+            }
+            .ff-navigation-divider {
+                label {
+                    display: none;
+                }
+            }
+            .ff-side-navigation--primary {
+                width: 54px;
+                .ff-nav-item {
+                    padding: 16px;
+                    label {
+                        opacity: 0;
+                        display: none;
+                    }
+                }
+            }
+            // nested menu options
+            .ff-side-navigation--nested {
+                width: calc(100% - 54px);
+                flex-grow: 1;
+            }
+        }
+    }
+    .ff-side-navigation--options {
+        width: 100%;
+    }
+    // handle route-r;ink active styling for primary options
+    .ff-side-navigation--primary {
+        width: 100%;
+        transition: $transition_time width;
+        -webkit-transition: $transition_time width;
+        .router-link-active {
+            li {
+                background-color: $ff-grey-600;
+                label {
+                    color: $ff-teal-300;
+                }
+                svg {
+                    fill: $ff-teal-300;
+                }
+            }
+        }
+    }
+    // nested menu options, including router-link highlighting
+    .ff-side-navigation--nested {
+        width: 0;
+        background-color: $ff-grey-600;
+        overflow: hidden;
+        .ff-nested-title {
+            color: $ff-teal-300;
+            font-weight: bold;
+            font-size: 1.1rem;
+            padding: 12px 16px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .ff-nav-item {
+            padding: 12px 16px;
+            background-color: $ff-grey-600;
+        }
+        .router-link-active {
+            li {
+                background-color: $ff-grey-600;
+            }
+            label {
+                color: $ff-teal-300;
+            }
+            svg {
+                fill: $ff-teal-300;
+            }
+        }
+    }
+    // navigation-right = the admin/user settings
+    &.ff-navigation-right {
+        left: initial;
+        right: -$sidenav_width;
+        .ff-nav-item:last-child {
+            border-top: 2px solid $ff-red-600;
+        }
+    }
+    &.open {
+        left: 0;
+    }
+    &.ff-navigation-right.open {
+        left: initial;
+        right: 0;
+    }
+    .ff-navigation-divider {
+        background-color: $ff-grey-900;
+        color: white;
+        padding: 6px 12px;
+        height: 32px;
+        display: block;
+        font-size: 0.85rem;
+        border-bottom: 1px solid $ff-grey-600;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+    }
+    .ff-dropdown-options .ff-dropdown-option {
+        padding: 0;
+    }
+    .ff-nav-item {
+        display: flex;
+        justify-content: space-between;
+        background-color: $ff-grey-700;
+        border-bottom: 1px solid $ff-grey-600;
+    }
+    .ff-notification-pill {
+        padding: 2px 12px;
+        background-color: $ff-red-600;
+        border: 1px solid $ff-red-700;
+    }
+    .ff-side-navigation--options-back {
+        // width: 100%;
+        li {
+            border-top: 1px solid $ff-grey-600;
+        }
+    }
+}
+
+@media screen and (min-width: $ff-screen-sm) {
+    /* Box */
+    .ff-layout--box--wrapper {
+        width: 75%;
+        padding: 128px 0;
+    }
+    .ff-layout--box--content {
+        min-width: 400px;
+        width: initial;
+        padding: 64px;
+    }
+    /* Platform */
+    .ff-layout--platform--wrapper {
+        grid-template-columns: $sidenav_width 1fr;
+        main {
+            margin: 24px;
+            padding: 32px;
+        }
+    }
+    .ff-navigation {
+        left: 0;
+        position: relative;
+    }
+    .ff-header {
+        .ff-header--mobile-toggle {
+            display: none;
+        }
+        .ff-header--mobile-usertoggle {
+            display: none;
+        }
+        img.ff-logo {
+            padding: 16px;
+        }
+        .ff-dropdown {
+            display: block;
+        }
+    }
+}
